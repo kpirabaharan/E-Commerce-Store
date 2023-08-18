@@ -11,7 +11,7 @@ const Billboard = ({ data }: BillboardProps) => {
         className='rounded-xl relative aspect-square md:aspect-[2.4/1] 
         overflow-hidden bg-cover'
         style={{
-          backgroundImage: `url(https://ecommerce-admin-kpirabaharan-billboards.s3.amazonaws.com/${data?.imageUrl})`,
+          backgroundImage: `url(${data?.imageUrl})`,
         }}
       >
         <div
