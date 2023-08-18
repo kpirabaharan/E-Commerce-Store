@@ -9,3 +9,8 @@ export interface Category {
   name: string;
   billboard: Billboard;
 }
+
+export interface Store {
+  id: string;
+  name: string;
+}

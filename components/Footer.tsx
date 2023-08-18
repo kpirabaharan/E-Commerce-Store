@@ -1,11 +1,13 @@
-'use client';
+import getStore from '@/actions/getStore';
 
-const Footer = () => {
+const Footer = async () => {
+  const store = await getStore();
+
   return (
     <footer className='bg-white border-t'>
       <div className='mx-auto py-10'>
         <p className='text-center text-xs text-black'>
-          &copy; 2023 StoreName, Inc. All Rights Reserved
+          &copy; 2023 {store.name}, Inc. All Rights Reserved
         </p>
       </div>
     </footer>
