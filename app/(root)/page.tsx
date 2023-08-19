@@ -1,9 +1,9 @@
 import getBillboard from '@/actions/getBillboard';
 import getProducts from '@/actions/getProducts';
 
-import Container from '@/components/ui/Container';
+import Container from '@/components/ui/container';
 import Billboard from '@/components/Billboard';
-import ProductList from '@/components/ProductList';
+import ProductList from '@/components/product/ProductList';
 
 export const revalidate = 0;
 
@@ -16,7 +16,7 @@ const HomePage = async () => {
       <div className='pb-10'>
         <Billboard data={billboard} />
       </div>
-      <div className='flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8'>
+      <div className='flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8 pb-10'>
         <ProductList title='Featured Products' items={products} />
       </div>
     </Container>
