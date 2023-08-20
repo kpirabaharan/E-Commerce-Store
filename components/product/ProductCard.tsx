@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ExpandIcon, ShoppingCartIcon } from 'lucide-react';
 
@@ -13,8 +14,17 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ data }: ProductCardProps) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/product/${data.id}`);
+  };
+
   return (
-    <div className='bg-white group cursor-pointer rounded-xl border p-3 space-y-3'>
+    <div
+      onClick={handleClick}
+      className='bg-white group cursor-pointer rounded-xl border p-3 space-y-3'
+    >
       {/* Images and Actions */}
       <div
         className={`aspect-square relative rounded-xl ${true && 'bg-gray-100'}`}
