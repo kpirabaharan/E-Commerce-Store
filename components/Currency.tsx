@@ -1,17 +1,12 @@
-'use client';
-
 import { currencyFormatter } from '@/lib/utils';
 
 interface CurrencyProps {
   value: string | number;
+  className: string;
 }
 
-const Currency = ({ value }: CurrencyProps) => {
-  return (
-    <div className='font-semibold text-lg'>
-      {currencyFormatter.format(Number(value))}
-    </div>
-  );
+const Currency = ({ value, className }: CurrencyProps) => {
+  return <p className={className}>{currencyFormatter.format(Number(value))}</p>;
 };
 
 export default Currency;

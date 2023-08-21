@@ -51,7 +51,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
           <p className='font-semibold text-lg'>{data.name}</p>
           <p className='text-sm text-gray-500'>{data.category.name}</p>
         </div>
-        <Currency value={data.price} />
+        <Currency className='font-semibold text-lg' value={data.price} />
       </div>
     </div>
   );

@@ -3,9 +3,10 @@ import Link from 'next/link';
 import getCategories from '@/actions/getCategories';
 import getStore from '@/actions/getStore';
 
-import Container from '@/components/ui/container';
 import NavRoutes from '@/components/navbar/NavRoutes';
 import NavbarActions from '@/components/navbar/NavbarActions';
+
+import Container from '@/components/ui/container';
 
 export const revalidate = 0;
 

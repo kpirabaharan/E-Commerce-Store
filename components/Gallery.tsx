@@ -1,11 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 
 import { Image as ImageType } from '@/types';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useState } from 'react';
 
 interface GalleryProps {
   images: ImageType[];
@@ -15,8 +15,8 @@ const Gallery = ({ images }: GalleryProps) => {
   const [active, setActive] = useState<string>(images[0].id);
 
   return (
-    <Tabs defaultValue={images[0].id} className='h-[400px] space-y-2 w-full'>
-      <div className='h-[300px] relative bg-gray-200 rounded-md'>
+    <Tabs defaultValue={images[0].id} className='space-y-2 w-full'>
+      <div className='h-[400px] relative bg-gray-200 rounded-md'>
         {images.map((image) => (
           <TabsContent key={image.id} value={image.id}>
             <Image

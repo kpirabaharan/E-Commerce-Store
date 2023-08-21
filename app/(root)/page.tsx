@@ -1,9 +1,10 @@
 import getBillboard from '@/actions/getBillboard';
 import getProducts from '@/actions/getProducts';
 
-import Container from '@/components/ui/container';
 import Billboard from '@/components/Billboard';
 import ProductList from '@/components/product/ProductList';
+
+import Container from '@/components/ui/container';
 
 export const revalidate = 0;
 
