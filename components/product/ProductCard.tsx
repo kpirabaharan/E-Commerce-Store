@@ -1,15 +1,16 @@
 'use client';
 
+import { MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ExpandIcon, ShoppingCartIcon } from 'lucide-react';
 
 import { Product } from '@/types';
 import usePreviewModal from '@/hooks/usePreviewModal';
+import useCart from '@/hooks/useCart';
 
 import IconButton from '@/components/IconButton';
 import Currency from '@/components/Currency';
-import { SyntheticEvent } from 'react';
 
 interface ProductCardProps {
   data: Product;
@@ -17,15 +18,21 @@ interface ProductCardProps {
 
 const ProductCard = ({ data }: ProductCardProps) => {
   const router = useRouter();
+  const { addItem } = useCart();
   const { onOpen } = usePreviewModal();
 
   const handleClick = () => {
     router.push(`/product/${data.id}`);
   };
 
-  const onPreview = (e: SyntheticEvent) => {
+  const onPreview = (e: MouseEvent) => {
     e.stopPropagation();
     onOpen(data);
+  };
+
+  const onAddToCart = (e: MouseEvent) => {
+    e.stopPropagation();
+    addItem(data);
   };
 
   return (
@@ -47,9 +54,9 @@ const ProductCard = ({ data }: ProductCardProps) => {
           className='opacity-0 group-hover:opacity-100 transition duration-300
           absolute bottom-2 w-full'
         >
-          <div className='flex gap-x-2 justify-center' onClick={onPreview}>
-            <IconButton onClick={() => {}} Icon={ExpandIcon} />
-            <IconButton onClick={() => {}} Icon={ShoppingCartIcon} />
+          <div className='flex gap-x-2 justify-center'>
+            <IconButton onClick={onPreview} Icon={ExpandIcon} />
+            <IconButton onClick={onAddToCart} Icon={ShoppingCartIcon} />
           </div>
         </div>
       </div>

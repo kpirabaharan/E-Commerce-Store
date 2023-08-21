@@ -1,11 +1,12 @@
 'use client';
 
+import { MouseEvent } from 'react';
 import { LucideIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
 interface IconButtonProps {
-  onClick: () => void;
+  onClick: (e: MouseEvent) => void;
   Icon: LucideIcon;
 }
 
