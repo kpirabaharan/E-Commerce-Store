@@ -13,7 +13,7 @@ interface InfoProps {
 
 const Info = ({ data }: InfoProps) => {
   return (
-    <div className='flex flex-col gap-2 justify-between md:h-[400px]'>
+    <div className='flex flex-col gap-2 justify-between h-full'>
       <div className='flex flex-col gap-y-2'>
         <h1 className='text-3xl font-bold text-gray-900'>{data.name}</h1>
         <Currency className='text-2xl text-gray-900' value={data.price} />
@@ -30,7 +30,7 @@ const Info = ({ data }: InfoProps) => {
           />
         </div>
       </div>
-      <Button className='mt-4 lg:mt-0 gap-x-2'>
+      <Button className='mt-4 gap-x-2'>
         <p>Add to Cart</p>
       </Button>
     </div>

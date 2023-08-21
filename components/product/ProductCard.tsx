@@ -5,9 +5,11 @@ import Image from 'next/image';
 import { ExpandIcon, ShoppingCartIcon } from 'lucide-react';
 
 import { Product } from '@/types';
+import usePreviewModal from '@/hooks/usePreviewModal';
 
 import IconButton from '@/components/IconButton';
 import Currency from '@/components/Currency';
+import { SyntheticEvent } from 'react';
 
 interface ProductCardProps {
   data: Product;
@@ -15,9 +17,15 @@ interface ProductCardProps {
 
 const ProductCard = ({ data }: ProductCardProps) => {
   const router = useRouter();
+  const { onOpen } = usePreviewModal();
 
   const handleClick = () => {
     router.push(`/product/${data.id}`);
+  };
+
+  const onPreview = (e: SyntheticEvent) => {
+    e.stopPropagation();
+    onOpen(data);
   };
 
   return (
@@ -30,7 +38,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
         className={`aspect-square relative rounded-xl ${true && 'bg-gray-100'}`}
       >
         <Image
-          className='aspect-ratio rounded-xl'
+          className='rounded-xl'
           src={data.images[0].url}
           alt='product'
           fill
@@ -39,7 +47,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
           className='opacity-0 group-hover:opacity-100 transition duration-300
           absolute bottom-2 w-full'
         >
-          <div className='flex gap-x-2 justify-center'>
+          <div className='flex gap-x-2 justify-center' onClick={onPreview}>
             <IconButton onClick={() => {}} Icon={ExpandIcon} />
             <IconButton onClick={() => {}} Icon={ShoppingCartIcon} />
           </div>
