@@ -19,18 +19,21 @@ const Gallery = ({ images }: GalleryProps) => {
       defaultValue={images[0].id}
       className='space-y-2 w-full flex flex-col'
     >
-      <div className='aspect-square max-h-[400px] relative bg-gray-200 rounded-md'>
-        {images.map((image) => (
-          <TabsContent key={image.id} value={image.id}>
-            <Image
-              src={image.url}
-              className='object-contain'
-              alt='image'
-              fill
-            />
-          </TabsContent>
-        ))}
-      </div>
+      {images.map((image) => (
+        <TabsContent
+          key={image.id}
+          value={image.id}
+          className={`aspect-square max-h-[400px] relative rounded-md bg-gray-200`}
+        >
+          <Image
+            src={image.url}
+            className='object-contain rounded-md'
+            alt='image'
+            fill
+          />
+        </TabsContent>
+      ))}
+
       <TabsList className='h-[100px] gap-x-4 justify-start'>
         {images.map((image) => (
           <div key={image.id} className='w-[100px] h-full relative'>

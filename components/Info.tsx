@@ -1,6 +1,7 @@
-import { ShoppingCartIcon } from 'lucide-react';
+'use client';
 
 import { Product } from '@/types';
+import useCart from '@/hooks/useCart';
 
 import Currency from '@/components/Currency';
 
@@ -12,6 +13,8 @@ interface InfoProps {
 }
 
 const Info = ({ data }: InfoProps) => {
+  const { addItem } = useCart();
+
   return (
     <div className='flex flex-col gap-2 justify-between h-full'>
       <div className='flex flex-col gap-y-2'>
@@ -30,7 +33,7 @@ const Info = ({ data }: InfoProps) => {
           />
         </div>
       </div>
-      <Button className='mt-4 gap-x-2'>
+      <Button className='mt-4 gap-x-2' onClick={() => addItem(data)}>
         <p>Add to Cart</p>
       </Button>
     </div>

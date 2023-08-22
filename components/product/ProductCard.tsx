@@ -9,7 +9,8 @@ import { Product } from '@/types';
 import usePreviewModal from '@/hooks/usePreviewModal';
 import useCart from '@/hooks/useCart';
 
-import IconButton from '@/components/IconButton';
+import { Button } from '@/components/ui/button';
+
 import Currency from '@/components/Currency';
 
 interface ProductCardProps {
@@ -41,9 +42,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
       className='bg-white group cursor-pointer rounded-xl border p-3 space-y-3'
     >
       {/* Images and Actions */}
-      <div
-        className={`aspect-square relative rounded-xl ${true && 'bg-gray-100'}`}
-      >
+      <div className={`aspect-square relative rounded-xl bg-gray-100`}>
         <Image
           className='rounded-xl'
           src={data.images[0].url}
@@ -55,8 +54,20 @@ const ProductCard = ({ data }: ProductCardProps) => {
           absolute bottom-2 w-full'
         >
           <div className='flex gap-x-2 justify-center'>
-            <IconButton onClick={onPreview} Icon={ExpandIcon} />
-            <IconButton onClick={onAddToCart} Icon={ShoppingCartIcon} />
+            <Button
+              size={'rounded-icon'}
+              variant={'outline'}
+              onClick={onPreview}
+            >
+              <ExpandIcon size={20} />
+            </Button>
+            <Button
+              size={'rounded-icon'}
+              variant={'outline'}
+              onClick={onAddToCart}
+            >
+              <ShoppingCartIcon size={20} />
+            </Button>
           </div>
         </div>
       </div>

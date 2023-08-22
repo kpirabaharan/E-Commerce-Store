@@ -20,7 +20,7 @@ const useCart = create(
         const existingItem = currentItems.find((item) => item.id === data.id);
 
         if (existingItem) {
-          return toast('Item Already in Cart');
+          return toast('Item Already in Cart', { toastId: 'existingAddItem' });
         }
 
         set({ items: [...get().items, data] });

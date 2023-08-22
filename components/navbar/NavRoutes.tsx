@@ -19,7 +19,7 @@ const NavRoutes = ({ data }: NavRoutesProps) => {
   }));
 
   return (
-    <nav className='mx-6 flex items-center gap-x-4 lg:gap-x-6'>
+    <nav className='mx-6 flex items-center gap-x-4'>
       {routes.map((route) => (
         <Link
           key={route.href}
