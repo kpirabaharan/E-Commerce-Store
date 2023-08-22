@@ -38,13 +38,13 @@ const CartItem = ({ data }: CartItemProps) => {
         className='flex flex-1 flex-col justify-between sm:justify-normal gap-y-0 
         sm:gap-y-1'
       >
-        <p className='text-lg font-semibold text-black'>{data.name}</p>
+        <p className='sm:text-lg font-semibold text-black'>{data.name}</p>
         <div className='flex flex-row gap-x-2 sm:gap-x-4 text-sm text-gray-500'>
           <p>{data.color.name}</p>
           <Separator orientation={'vertical'} />
           <p>{data.size.name}</p>
         </div>
-        <Currency value={data.price} />
+        <Currency className='text-base sm:text-lg' value={data.price} />
       </div>
 
       <Button

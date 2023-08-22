@@ -1,15 +1,16 @@
-import { currencyFormatter } from '@/lib/utils';
+import { cn, currencyFormatter } from '@/lib/utils';
 
 interface CurrencyProps {
   value: string | number;
   className?: string;
 }
 
-const Currency = ({
-  value,
-  className = 'font-semibold text-lg',
-}: CurrencyProps) => {
-  return <p className={className}>{currencyFormatter.format(Number(value))}</p>;
+const Currency = ({ value, className }: CurrencyProps) => {
+  return (
+    <p className={cn('font-semibold text-lg', className)}>
+      {currencyFormatter.format(Number(value))}
+    </p>
+  );
 };
 
 export default Currency;
