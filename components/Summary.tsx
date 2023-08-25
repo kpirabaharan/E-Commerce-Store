@@ -23,7 +23,7 @@ const Summary = () => {
     }
 
     if (searchParams.get('canceled')) {
-      toast.error('Something Went Wrong');
+      toast('Payment Canceled');
     }
   }, [searchParams, removeAll]);
 

@@ -53,7 +53,7 @@ const CartPage = () => {
                     {items.map((item) => (
                       <>
                         <CartItem key={item.id} data={item} />
-                        <Separator />
+                        <Separator key={`${item.id}-Separator`} />
                       </>
                     ))}
                   </ul>
