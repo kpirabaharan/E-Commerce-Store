@@ -4,7 +4,7 @@ import getProducts from '@/actions/getProducts';
 import Billboard from '@/components/Billboard';
 import ProductList from '@/components/product/ProductList';
 
-import Container from '@/components/ui/container';
+import { Container } from '@/components/ui/container';
 
 export const revalidate = 0;
 

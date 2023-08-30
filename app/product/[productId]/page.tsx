@@ -5,7 +5,7 @@ import Gallery from '@/components/Gallery';
 import Info from '@/components/Info';
 import ProductList from '@/components/product/ProductList';
 
-import Container from '@/components/ui/container';
+import { Container } from '@/components/ui/container';
 import { Separator } from '@/components/ui/separator';
 
 interface ProductPageProps {

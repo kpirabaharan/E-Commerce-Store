@@ -6,7 +6,7 @@ import getStore from '@/actions/getStore';
 import NavRoutes from '@/components/navbar/NavRoutes';
 import NavbarActions from '@/components/navbar/NavbarActions';
 
-import Container from '@/components/ui/container';
+import { Container } from '@/components/ui/container';
 
 export const revalidate = 0;
 
