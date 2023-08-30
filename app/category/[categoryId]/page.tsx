@@ -3,8 +3,8 @@ import getSizes from '@/actions/getSizes';
 import getColors from '@/actions/getColors';
 import getCategory from '@/actions/getCategory';
 
-import { Container } from '@/components/ui/container';
 
+import { Container } from '@/components/Container';
 import Billboard from '@/components/Billboard';
 import Filter from '@/components/Filter';
 import MobileFilters from '@/components/MobileFilters';
