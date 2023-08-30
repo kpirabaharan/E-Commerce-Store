@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { ScaleLoader } from 'react-spinners';
 
 import useCart from '@/hooks/useCart';
 
@@ -13,6 +14,8 @@ import { Separator } from '@/components/ui/separator';
 import Currency from '@/components/Currency';
 
 const Summary = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { items, removeAll } = useCart();
 
@@ -20,24 +23,34 @@ const Summary = () => {
     if (searchParams.get('success')) {
       toast.success('Payment Completed');
       removeAll();
+      router.push('/cart');
     }
 
     if (searchParams.get('canceled')) {
       toast('Payment Canceled');
+      router.push('/cart');
     }
-  }, [searchParams, removeAll]);
+  }, [searchParams, removeAll, router]);
 
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
   }, 0);
 
   const onCheckout = async () => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-      { productIds: items.map((item) => item.id) },
-    );
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        { productIds: items.map((item) => item.id) },
+      );
 
-    window.location = response.data.url;
+      window.location = response.data.url;
+    } catch (err) {
+      console.log(err);
+      toast.error('Checkout Failed');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -54,8 +67,17 @@ const Summary = () => {
         </div>
         <Currency value={totalPrice} />
       </div>
-      <Button onClick={onCheckout} className='w-full mt-2 lg:mt-4'>
-        Checkout
+      <Button
+        className='w-full mt-2 lg:mt-4'
+        onClick={onCheckout}
+        disabled={isLoading}
+        type='submit'
+      >
+        {isLoading ? (
+          <ScaleLoader color='white' height={15} />
+        ) : (
+          <p>Checkout</p>
+        )}
       </Button>
     </div>
   );
