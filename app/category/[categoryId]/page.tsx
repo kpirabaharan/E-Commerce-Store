@@ -1,3 +1,5 @@
+import { intersectionBy, map } from 'lodash';
+
 import getProducts from '@/actions/getProducts';
 import getSizes from '@/actions/getSizes';
 import getColors from '@/actions/getColors';
@@ -23,9 +25,15 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId,
   });
-  const sizes = await getSizes();
-  const colors = await getColors();
   const category = await getCategory(params.categoryId);
+
+  const productSizes = products.map((product) => ({ id: product.size.id }));
+  var sizes = await getSizes();
+  sizes = intersectionBy(sizes, productSizes, 'id');
+
+  const productColors = products.map((product) => ({ id: product.color.id }));
+  var colors = await getColors();
+  colors = intersectionBy(colors, productColors, 'id');
 
   return (
     <Container>
