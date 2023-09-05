@@ -6,6 +6,8 @@ import { ShoppingBagIcon } from 'lucide-react';
 
 import useCart from '@/hooks/useCart';
 
+import ThemeButton from '@/components/ThemeButton';
+
 import { Button } from '@/components/ui/button';
 
 const NavbarActions = () => {
@@ -23,12 +25,13 @@ const NavbarActions = () => {
 
   return (
     <div className='ml-auto flex items-center gap-x-4'>
+      <ThemeButton />
       <Button
         size={'sm'}
         className='rounded-2xl'
         onClick={() => router.push('/cart')}
       >
-        <ShoppingBagIcon size={20} color='white' />
+        <ShoppingBagIcon size={20} />
         <p className='ml-2 text-sm pt-[1px]'>{items.length}</p>
       </Button>
     </div>

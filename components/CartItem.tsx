@@ -24,7 +24,8 @@ const CartItem = ({ data }: CartItemProps) => {
   return (
     <li className='flex flex-row gap-x-6'>
       <div
-        className={`relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48 bg-gray-200`}
+        className={`relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48 
+        bg-muted dark:bg-primary-foreground`}
       >
         <Image
           src={data.images[0].url}
@@ -38,8 +39,8 @@ const CartItem = ({ data }: CartItemProps) => {
         className='flex flex-1 flex-col justify-between sm:justify-normal gap-y-0 
         sm:gap-y-1'
       >
-        <p className='sm:text-lg font-semibold text-black'>{data.name}</p>
-        <div className='flex flex-row gap-x-2 sm:gap-x-4 text-sm text-gray-500'>
+        <p className='sm:text-lg font-semibold'>{data.name}</p>
+        <div className='flex flex-row gap-x-2 sm:gap-x-4 text-sm text-muted-foreground'>
           <p>{data.color.name}</p>
           <Separator orientation={'vertical'} />
           <p>{data.size.name}</p>

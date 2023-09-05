@@ -39,10 +39,12 @@ const ProductCard = ({ data }: ProductCardProps) => {
   return (
     <div
       onClick={handleClick}
-      className='bg-white group cursor-pointer rounded-xl border p-3 space-y-3'
+      className='bg-white dark:bg-secondary group cursor-pointer rounded-xl border p-3 space-y-3'
     >
       {/* Images and Actions */}
-      <div className={`aspect-square relative rounded-xl bg-gray-100`}>
+      <div
+        className={`aspect-square relative rounded-xl bg-secondary dark:bg-primary-foreground`}
+      >
         <Image
           className='rounded-xl'
           src={data.images[0].url}
@@ -75,7 +77,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
       <div className='flex justify-between w-full'>
         <div>
           <p className='font-semibold text-lg'>{data.name}</p>
-          <p className='text-sm text-gray-500'>{data.category.name}</p>
+          <p className='text-sm text-muted-foreground'>{data.category.name}</p>
         </div>
         <Currency className='font-semibold text-lg' value={data.price} />
       </div>

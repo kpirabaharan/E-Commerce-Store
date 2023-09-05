@@ -56,14 +56,14 @@ const Summary = () => {
   return (
     <div
       className='mt-4 lg:mt-0 lg:col-span-5 px-4 py-6 sm:p-6 lg:p-8
-      rounded-lg bg-gray-50 flex flex-col gap-y-4'
+      rounded-lg bg-secondary flex flex-col gap-y-4'
     >
-      <h2 className='text-lg font-bold text-gray-900'>Order Summary</h2>
+      <h2 className='text-lg font-bold'>Order Summary</h2>
       <Separator />
       <div className='flex flex-row items-center justify-between'>
         <div className='flex flex-col'>
-          <p className='text-base font-medium text-gray-900'>Order Total</p>
-          <p className='text-sm text-gray-500'>{items.length} Items</p>
+          <p className='text-base font-medium'>Order Total</p>
+          <p className='text-sm text-muted-foreground'>{items.length} Items</p>
         </div>
         <Currency value={totalPrice} />
       </div>
