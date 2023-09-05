@@ -1,27 +1,35 @@
 # E-commerce Store Website
 
-Welcome to the E-commerce Store Website, your ultimate destination for a seamless shopping experience. Our user-friendly platform offers a wide range of products from multiple stores, making it easy for you to discover and purchase the items you love. Whether you're shopping for clothing, food, electronics, or more, we've got you covered.
+Welcome to the E-commerce Store Website, the online shopping destination that pairs seamlessly with our E-commerce Admin Dashboard. Explore, browse, and purchase a wide range of products with ease. It is integrated with Stripe for secure payments, ensuring smooth transactions as you shop to your heart's content.
 
 ## Key Features
 
 - **Product Selection:**
+
   - Browse and explore a diverse catalog of products across various categories.
   - Discover trending items and new arrivals with ease.
 
 - **Effortless Shopping:**
+
   - Add products to your cart and proceed to a hassle-free checkout process.
   - Conveniently manage your orders and track their status.
-
-- **Personalized Experience:**
-  - Create and manage your user profile for a tailored shopping experience.
-  - Save your favorite products for future reference.
 
 - **Secure Transactions:**
   - Rest assured that your payments are processed securely with our integrated payment system.
 
 ## Demo
 
-Feel free to explore our E-commerce Store Website by visiting the [Demo](https://e-commerce-store-website-demo.vercel.app/).
+Explore the [E-commerce Store Website Demo](https://e-commerce-store-kpirabaharan.vercel.app/) to experience these features in action.
+
+## Accompanied Admin Dashboard Website
+
+### Github Page
+
+**E-commerce Admin Dashboard GitHub:** [GitHub Repository](https://github.com/kpirabaharan/E-Commerce-Admin-Dashboard)
+
+### Website
+
+Explore the live admin dasboard website: [E-commerce Admin Dashboard Website](https://e-commerce-admin-dashboard-kpirabaharan.vercel.app/)
 
 ## How to Shop
 
@@ -29,31 +37,42 @@ Feel free to explore our E-commerce Store Website by visiting the [Demo](https:/
 2. Click on a product to view details and pricing information.
 3. Add products to your shopping cart.
 4. Review your cart, make any necessary adjustments, and proceed to checkout.
-5. Provide the required information for a smooth and secure transaction.
-6. Track the status of your orders in your user profile.
+5. Fill in the checkout form with test data (see below)
+
+![Test Data](./screenshots/TestCard.jpeg)
 
 ## Technologies
 
-- **Frontend:** React, Redux, Tailwind CSS
-- **Payment Processing:** Stripe
+- Next.js: React framework for server-side rendering and building web applications
+- Shadcn UI: A popular component library for building accessible and highly customizable user interfaces
+- Tailwind CSS: Utility-first CSS framework for styling
+- Stripe: Payment processing platform for handling recurring payments
 
 ## Screenshots
 
-Include relevant screenshots of the website to showcase its design and features.
+### Home Page
 
-![Homepage](./screenshots/homepage.png)
+![Home Page Light](./screenshots/HomePage.png)
 
-![Product Page](./screenshots/product-page.png)
+### Category Page
+
+![Category Page](./screenshots/CategoryPage.png)
+
+### Checkout Page
+
+![Checkout Page](./screenshots/CheckoutScreen.png)
+
+### Stripe Payment Page
+
+![Stripe Payment Page](./screenshots/StripePayment.png)
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Contact
 
-If you have any questions or need assistance, please do not hesitate to contact our support team:
+If you have any questions or suggestions, please feel free to reach out:
 
-- Email: support@example.com
-- Phone: +1 (123) 456-7890
-
-We are here to make your shopping experience as enjoyable as possible!
-
----
-
-Thank you for choosing our E-commerce Store Website. Happy shopping!
+- Email: kpirabaharan3@gmail.com
+- LinkedIn: [https://linkedin.com/in/kpirabaharan/](https://linkedin.com/in/kpirabaharan/)
