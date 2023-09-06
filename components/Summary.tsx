@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { ScaleLoader } from 'react-spinners';
 
 import useCart from '@/hooks/useCart';
+import { useOrigin } from '@/hooks/useOrigin';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -18,6 +19,7 @@ const Summary = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { items, removeAll } = useCart();
+  const origin = useOrigin();
 
   useEffect(() => {
     if (searchParams.get('success')) {
@@ -41,7 +43,7 @@ const Summary = () => {
       setIsLoading(true);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-        { productIds: items.map((item) => item.id) },
+        { productIds: items.map((item) => item.id), storeUrl: origin },
       );
 
       window.location = response.data.url;
