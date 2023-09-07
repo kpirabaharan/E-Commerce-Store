@@ -19,7 +19,12 @@ Welcome to the E-commerce Store Website, the online shopping destination that pa
 
 ## Demo
 
-Explore the [E-commerce Store Website Demo](https://e-commerce-store-kpirabaharan.vercel.app/) to experience these features in action.
+To showcase the multi-store feature, two stores have been established within the test account associated with the admin dashboard website. These stores include a clothing store and a shoe store, and this setup is designed to illustrate the platform's versatility by providing separate shopping experiences for distinct product categories.
+
+**Click the links to explore the live websites:**
+
+- [E-commerce Clothing Store Website](https://e-commerce-store-clothes-kpirabaharan.vercel.app/)
+- [E-commerce Shoe Store Website](https://e-commerce-store-shoes-kpirabaharan.vercel.app/)
 
 ## Accompanied Admin Dashboard Website
 
