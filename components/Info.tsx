@@ -33,7 +33,7 @@ const Info = ({ data }: InfoProps) => {
           />
         </div>
       </div>
-      <Button className='mt-4 gap-x-2' onClick={() => addItem(data)}>
+      <Button className='mt-4 gap-x-2' onClick={() => addItem(data, true)}>
         <p>Add to Cart</p>
       </Button>
     </div>

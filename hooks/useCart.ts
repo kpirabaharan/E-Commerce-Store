@@ -6,8 +6,9 @@ import { toast } from 'react-toastify';
 
 interface CartStore {
   items: Product[];
-  addItem: (data: Product) => void;
+  addItem: (data: Product, ping?: boolean) => void;
   removeItem: (id: string) => void;
+  removeBatch: (id: string) => void;
   removeAll: () => void;
 }
 
@@ -15,20 +16,43 @@ const useCart = create(
   persist<CartStore>(
     (set, get) => ({
       items: [],
-      addItem: (data: Product) => {
+      addItem: (data: Product, ping?: boolean) => {
         const currentItems = get().items;
         const existingItem = currentItems.find((item) => item.id === data.id);
+        const otherItems = currentItems.filter((item) => item.id !== data.id);
 
         if (existingItem) {
-          return toast('Item Already in Cart', { toastId: 'existingAddItem' });
+          set({
+            items: [
+              ...otherItems,
+              { ...existingItem, quantity: existingItem.quantity + 1 },
+            ],
+          });
+        } else {
+          set({ items: [...get().items, { ...data, quantity: 1 }] });
         }
 
-        set({ items: [...get().items, data] });
-        if (!toast.isActive('addItem'))
+        if (!toast.isActive('addItem') && ping)
           toast('Item Added to Cart', { toastId: 'addItem' });
         else toast.update('addItem', { autoClose: 3000 });
       },
       removeItem: (id: string) => {
+        const currentItem = get().items.find((item) => item.id === id);
+        if (currentItem!.quantity > 1) {
+          set({
+            items: [
+              ...get().items.filter((item) => item.id !== id),
+              { ...currentItem!, quantity: currentItem!.quantity - 1 },
+            ],
+          });
+        } else {
+          set({ items: [...get().items.filter((item) => item.id !== id)] });
+          if (!toast.isActive('removeItem'))
+            toast('Item Removed from Cart', { toastId: 'removeItem' });
+          else toast.update('removeItem', { autoClose: 3000 });
+        }
+      },
+      removeBatch: (id: string) => {
         set({ items: [...get().items.filter((item) => item.id !== id)] });
         if (!toast.isActive('removeItem'))
           toast('Item Removed from Cart', { toastId: 'removeItem' });

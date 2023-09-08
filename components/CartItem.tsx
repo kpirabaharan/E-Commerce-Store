@@ -1,8 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { toast } from 'react-toastify';
-import { Trash2Icon } from 'lucide-react';
+import { Trash2Icon, PlusIcon, MinusIcon } from 'lucide-react';
 
 import { Product } from '@/types';
 import useCart from '@/hooks/useCart';
@@ -12,13 +11,14 @@ import { Button } from '@/components/ui/button';
 
 import Currency from '@/components/Currency';
 import { Separator } from '@/components/ui/separator';
+import { remove } from 'lodash';
 
 interface CartItemProps {
   data: Product;
 }
 
 const CartItem = ({ data }: CartItemProps) => {
-  const { removeItem } = useCart();
+  const { removeItem, removeBatch, addItem } = useCart();
   const isSmallScreens = useMediaQuery('(max-width: 639px)');
 
   return (
@@ -48,13 +48,26 @@ const CartItem = ({ data }: CartItemProps) => {
         <Currency className='text-base sm:text-lg' value={data.price} />
       </div>
 
-      <Button
-        onClick={() => removeItem(data.id)}
-        size={isSmallScreens ? 'icon-sm' : 'icon'}
-        variant={'destructive'}
-      >
-        <Trash2Icon size={isSmallScreens ? 15 : 20} />
-      </Button>
+      <div className='flex flex-row h-full items-center gap-x-4'>
+        <div className='flex flex-row items-center gap-x-1 bg-white rounded-lg'>
+          <Button size={'icon-sm'} onClick={() => removeItem(data.id)}>
+            <MinusIcon size={20} />
+          </Button>
+          <p className='flex justify-center text-secondary text-lg font-bold w-[25px]'>
+            {data.quantity}
+          </p>
+          <Button size={'icon-sm'} onClick={() => addItem(data, false)}>
+            <PlusIcon size={20} />
+          </Button>
+        </div>
+        <Button
+          onClick={() => removeBatch(data.id)}
+          size={isSmallScreens ? 'icon-sm' : 'icon'}
+          variant={'destructive'}
+        >
+          <Trash2Icon size={isSmallScreens ? 15 : 20} />
+        </Button>
+      </div>
     </li>
   );
 };

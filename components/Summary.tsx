@@ -34,10 +34,6 @@ const Summary = () => {
     }
   }, [searchParams, removeAll, router]);
 
-  const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
-  }, 0);
-
   const onCheckout = async () => {
     try {
       setIsLoading(true);
@@ -61,6 +57,13 @@ const Summary = () => {
     }
   };
 
+  const totalPrice = items.reduce(
+    (total, item) => total + Number(item.price),
+    0,
+  );
+
+  const totalItems = items.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <div
       className='mt-4 lg:mt-0 lg:col-span-5 px-4 py-6 sm:p-6 lg:p-8
@@ -71,7 +74,7 @@ const Summary = () => {
       <div className='flex flex-row items-center justify-between'>
         <div className='flex flex-col'>
           <p className='text-base font-medium'>Order Total</p>
-          <p className='text-sm text-muted-foreground'>{items.length} Items</p>
+          <p className='text-sm text-muted-foreground'>{totalItems} Items</p>
         </div>
         <Currency value={totalPrice} />
       </div>

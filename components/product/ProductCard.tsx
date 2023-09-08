@@ -33,7 +33,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
 
   const onAddToCart = (e: MouseEvent) => {
     e.stopPropagation();
-    addItem(data);
+    addItem(data, true);
   };
 
   return (
