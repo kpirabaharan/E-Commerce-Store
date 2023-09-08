@@ -19,14 +19,17 @@ const useCart = create(
       addItem: (data: Product, ping?: boolean) => {
         const currentItems = get().items;
         const existingItem = currentItems.find((item) => item.id === data.id);
-        const otherItems = currentItems.filter((item) => item.id !== data.id);
 
         if (existingItem) {
           set({
-            items: [
-              ...otherItems,
-              { ...existingItem, quantity: existingItem.quantity + 1 },
-            ],
+            items: get().items.map((item) => {
+              const existingItem = item.id === data.id;
+              if (existingItem) {
+                return { ...item, quantity: item.quantity + 1 };
+              } else {
+                return { ...item };
+              }
+            }),
           });
         } else {
           set({ items: [...get().items, { ...data, quantity: 1 }] });
@@ -40,10 +43,14 @@ const useCart = create(
         const currentItem = get().items.find((item) => item.id === id);
         if (currentItem!.quantity > 1) {
           set({
-            items: [
-              ...get().items.filter((item) => item.id !== id),
-              { ...currentItem!, quantity: currentItem!.quantity - 1 },
-            ],
+            items: get().items.map((item) => {
+              const existingItem = item.id === id;
+              if (existingItem) {
+                return { ...item, quantity: item.quantity - 1 };
+              } else {
+                return { ...item };
+              }
+            }),
           });
         } else {
           set({ items: [...get().items.filter((item) => item.id !== id)] });
