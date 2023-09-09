@@ -13,7 +13,9 @@ interface InfoProps {
 }
 
 const Info = ({ data }: InfoProps) => {
-  const { addItem } = useCart();
+  const { addItem, items } = useCart();
+
+  const currentItem = items.find((item) => item.id === data.id);
 
   return (
     <div className='flex flex-col gap-2 justify-between h-full'>
@@ -33,8 +35,20 @@ const Info = ({ data }: InfoProps) => {
           />
         </div>
       </div>
-      <Button className='mt-4 gap-x-2' onClick={() => addItem(data, true)}>
-        <p>Add to Cart</p>
+      <Button
+        className='mt-4 gap-x-2'
+        onClick={() => addItem(data, true)}
+        disabled={currentItem ? currentItem.quantity >= 5 : false}
+      >
+        {currentItem ? (
+          currentItem.quantity >= 5 ? (
+            <p>Limit 5 Per Customer</p>
+          ) : (
+            <p>Add to Cart</p>
+          )
+        ) : (
+          <p>Add to Cart</p>
+        )}
       </Button>
     </div>
   );

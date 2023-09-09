@@ -20,7 +20,7 @@ const useCart = create(
         const currentItems = get().items;
         const existingItem = currentItems.find((item) => item.id === data.id);
 
-        if (existingItem) {
+        if (existingItem && existingItem.quantity < 5) {
           set({
             items: get().items.map((item) => {
               const existingItem = item.id === data.id;
@@ -31,13 +31,15 @@ const useCart = create(
               }
             }),
           });
-        } else {
+        } else if (!existingItem) {
           set({ items: [...get().items, { ...data, quantity: 1 }] });
         }
-
-        if (!toast.isActive('addItem') && ping)
-          toast('Item Added to Cart', { toastId: 'addItem' });
-        else toast.update('addItem', { autoClose: 3000 });
+        if (!existingItem || existingItem.quantity < 5) {
+          if (!toast.isActive('addItem') && ping)
+            toast('Item Added to Cart', { toastId: 'addItem' });
+          else if (toast.isActive('addItem') && ping)
+            toast.update('addItem', { autoClose: 3000 });
+        }
       },
       removeItem: (id: string) => {
         const currentItem = get().items.find((item) => item.id === id);

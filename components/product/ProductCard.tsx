@@ -19,7 +19,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ data }: ProductCardProps) => {
   const router = useRouter();
-  const { addItem } = useCart();
+  const { addItem, items } = useCart();
   const { onOpen } = usePreviewModal();
 
   const handleClick = () => {
@@ -35,6 +35,8 @@ const ProductCard = ({ data }: ProductCardProps) => {
     e.stopPropagation();
     addItem(data, true);
   };
+
+  const currentItem = items.find((item) => item.id === data.id);
 
   return (
     <div
@@ -67,6 +69,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
               size={'rounded-icon'}
               variant={'outline'}
               onClick={onAddToCart}
+              disabled={currentItem ? currentItem.quantity >= 5 : false}
             >
               <ShoppingCartIcon size={20} />
             </Button>
