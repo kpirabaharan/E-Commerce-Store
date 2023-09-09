@@ -5,7 +5,7 @@ import { Product } from '@/types';
 import { toast } from 'react-toastify';
 
 interface CartStore {
-  items: Product[];
+  items: (Product & { quantity: number })[];
   addItem: (data: Product, ping?: boolean) => void;
   removeItem: (id: string) => void;
   removeBatch: (id: string) => void;

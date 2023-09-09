@@ -64,7 +64,7 @@ const CartItem = ({ data }: CartItemProps) => {
             <MinusIcon size={20} />
           </Button>
           <p className='flex justify-center text-secondary text-lg font-bold w-[25px]'>
-            {data.quantity}
+            {currentItem!.quantity}
           </p>
           <Button
             size={isSmallScreens ? 'icon-sm' : 'icon'}

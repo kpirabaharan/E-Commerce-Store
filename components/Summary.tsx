@@ -42,7 +42,7 @@ const Summary = () => {
         {
           orderedProducts: items.map((item) => ({
             productId: item.id,
-            amount: 1,
+            quantity: item.quantity,
           })),
           storeUrl: origin,
         },
