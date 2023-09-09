@@ -20,6 +20,9 @@ const CartItem = ({ data }: CartItemProps) => {
   const { removeItem, removeBatch, addItem, items } = useCart();
   const isSmallScreens = useMediaQuery('(max-width: 639px)');
 
+  const itemAmount = data.amount;
+  const maxAmount = itemAmount <= 5 ? itemAmount : 5;
+
   const currentItem = items.find((item) => item.id === data.id);
 
   return (
@@ -66,7 +69,7 @@ const CartItem = ({ data }: CartItemProps) => {
           <Button
             size={isSmallScreens ? 'icon-sm' : 'icon'}
             onClick={() => addItem(data, false)}
-            disabled={currentItem!.quantity >= 5}
+            disabled={currentItem!.quantity >= maxAmount}
           >
             <PlusIcon size={20} />
           </Button>

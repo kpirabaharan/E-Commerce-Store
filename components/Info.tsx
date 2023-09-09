@@ -15,6 +15,10 @@ interface InfoProps {
 const Info = ({ data }: InfoProps) => {
   const { addItem, items } = useCart();
 
+  const itemAmount = data.amount;
+  const maxAmount = itemAmount <= 5 ? itemAmount : 5;
+  const isShortage = itemAmount <= 5;
+
   const currentItem = items.find((item) => item.id === data.id);
 
   return (
@@ -38,11 +42,11 @@ const Info = ({ data }: InfoProps) => {
       <Button
         className='mt-4 gap-x-2'
         onClick={() => addItem(data, true)}
-        disabled={currentItem ? currentItem.quantity >= 5 : false}
+        disabled={currentItem ? currentItem.quantity >= maxAmount : false}
       >
         {currentItem ? (
-          currentItem.quantity >= 5 ? (
-            <p>Limit 5 Per Customer</p>
+          currentItem.quantity >= maxAmount ? (
+            isShortage? <p>Out of Stock</p> :<p>Limit 5 Per Customer</p>
           ) : (
             <p>Add to Cart</p>
           )

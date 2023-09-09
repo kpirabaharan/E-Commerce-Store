@@ -36,6 +36,9 @@ const ProductCard = ({ data }: ProductCardProps) => {
     addItem(data, true);
   };
 
+  const itemAmount = data.amount;
+  const maxAmount = itemAmount <= 5 ? itemAmount : 5;
+
   const currentItem = items.find((item) => item.id === data.id);
 
   return (
@@ -69,7 +72,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
               size={'rounded-icon'}
               variant={'outline'}
               onClick={onAddToCart}
-              disabled={currentItem ? currentItem.quantity >= 5 : false}
+              disabled={currentItem ? currentItem.quantity >= maxAmount : false}
             >
               <ShoppingCartIcon size={20} />
             </Button>
