@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import { toast } from 'react-toastify';
 
 import { Product } from '@/types';
-import { toast } from 'react-toastify';
 
 interface CartStore {
   items: (Product & { quantity: number })[];
@@ -20,7 +20,7 @@ const useCart = create(
         const currentItems = get().items;
         const existingItem = currentItems.find((item) => item.id === data.id);
 
-        if (existingItem && existingItem.quantity < 5) {
+        if (existingItem) {
           set({
             items: get().items.map((item) => {
               const existingItem = item.id === data.id;
@@ -31,7 +31,7 @@ const useCart = create(
               }
             }),
           });
-        } else if (!existingItem) {
+        } else {
           set({ items: [...get().items, { ...data, quantity: 1 }] });
         }
         if (!existingItem || existingItem.quantity < 5) {

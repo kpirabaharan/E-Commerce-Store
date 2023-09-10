@@ -2,6 +2,7 @@
 
 import { Product } from '@/types';
 import useCart from '@/hooks/useCart';
+import useLimit from '@/hooks/useLimit';
 
 import Currency from '@/components/Currency';
 
@@ -13,13 +14,18 @@ interface InfoProps {
 }
 
 const Info = ({ data }: InfoProps) => {
-  const { addItem, items } = useCart();
+  const { addItem, items, removeItem } = useCart();
+  const { limit } = useLimit();
 
   const itemAmount = data.amount;
-  const maxAmount = itemAmount <= 5 ? itemAmount : 5;
-  const isShortage = itemAmount <= 5;
+  const maxAmount = itemAmount <= limit ? itemAmount : limit;
+  const isShortage = itemAmount <= limit;
 
   const currentItem = items.find((item) => item.id === data.id);
+
+  if (currentItem && currentItem?.quantity > limit) {
+    removeItem(data.id);
+  }
 
   return (
     <div className='flex flex-col gap-2 justify-between h-full'>
@@ -46,7 +52,11 @@ const Info = ({ data }: InfoProps) => {
       >
         {currentItem ? (
           currentItem.quantity >= maxAmount ? (
-            isShortage? <p>Out of Stock</p> :<p>Limit 5 Per Customer</p>
+            isShortage ? (
+              <p>Out of Stock</p>
+            ) : (
+              <p>Limit {limit} Per Customer</p>
+            )
           ) : (
             <p>Add to Cart</p>
           )

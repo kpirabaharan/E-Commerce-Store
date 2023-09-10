@@ -51,10 +51,13 @@ const CartPage = () => {
                 <ul className='flex flex-col gap-y-2 sm:gap-y-4'>
                   <Separator />
                   {items.map((item) => (
-                    <>
-                      <CartItem key={item.id} data={item} />
-                      <Separator key={`${item.id}-Separator`} />
-                    </>
+                    <div
+                      key={item.id}
+                      className='flex flex-col gap-y-2 sm:gap-y-4'
+                    >
+                      <CartItem data={item} />
+                      <Separator />
+                    </div>
                   ))}
                 </ul>
               </div>

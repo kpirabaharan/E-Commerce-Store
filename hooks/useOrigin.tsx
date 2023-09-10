@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 
@@ -17,8 +17,6 @@ export const useOrigin = () => {
   if (!isMounted) {
     return '';
   }
-
-  console.log(origin);
 
   return origin;
 };

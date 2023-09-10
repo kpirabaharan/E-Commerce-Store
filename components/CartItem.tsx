@@ -6,6 +6,7 @@ import { Trash2Icon, PlusIcon, MinusIcon } from 'lucide-react';
 import { Product } from '@/types';
 import useCart from '@/hooks/useCart';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import useLimit from '@/hooks/useLimit';
 
 import { Button } from '@/components/ui/button';
 
@@ -19,11 +20,16 @@ interface CartItemProps {
 const CartItem = ({ data }: CartItemProps) => {
   const { removeItem, removeBatch, addItem, items } = useCart();
   const isSmallScreens = useMediaQuery('(max-width: 639px)');
+  const { limit } = useLimit();
 
   const itemAmount = data.amount;
-  const maxAmount = itemAmount <= 5 ? itemAmount : 5;
+  const maxAmount = itemAmount <= limit ? itemAmount : limit;
 
   const currentItem = items.find((item) => item.id === data.id);
+
+  if (currentItem && currentItem?.quantity > limit) {
+    removeItem(data.id);
+  }
 
   return (
     <li className='flex flex-row gap-x-6'>

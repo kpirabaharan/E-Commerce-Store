@@ -9,7 +9,9 @@ import { Container } from '@/components/Container';
 export const revalidate = 0;
 
 const HomePage = async () => {
-  const billboard = await getBillboard(process.env.HOME_BILLBOARD ?? '');
+  const billboard = await getBillboard(
+    process.env.NEXT_PUBLIC_HOME_BILLBOARD ?? '',
+  );
   const products = await getProducts({ isFeatured: true });
 
   return (

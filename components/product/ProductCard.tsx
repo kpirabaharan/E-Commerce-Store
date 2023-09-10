@@ -8,6 +8,7 @@ import { ExpandIcon, ShoppingCartIcon } from 'lucide-react';
 import { Product } from '@/types';
 import usePreviewModal from '@/hooks/usePreviewModal';
 import useCart from '@/hooks/useCart';
+import useLimit from '@/hooks/useLimit';
 
 import { Button } from '@/components/ui/button';
 
@@ -19,8 +20,9 @@ interface ProductCardProps {
 
 const ProductCard = ({ data }: ProductCardProps) => {
   const router = useRouter();
-  const { addItem, items } = useCart();
+  const { addItem, items, removeItem } = useCart();
   const { onOpen } = usePreviewModal();
+  const { limit } = useLimit();
 
   const handleClick = () => {
     router.push(`/product/${data.id}`);
@@ -37,9 +39,13 @@ const ProductCard = ({ data }: ProductCardProps) => {
   };
 
   const itemAmount = data.amount;
-  const maxAmount = itemAmount <= 5 ? itemAmount : 5;
+  const maxAmount = itemAmount <= limit ? itemAmount : limit;
 
   const currentItem = items.find((item) => item.id === data.id);
+
+  if (currentItem && currentItem?.quantity > limit) {
+    removeItem(data.id);
+  }
 
   return (
     <div
