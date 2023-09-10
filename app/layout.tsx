@@ -44,6 +44,8 @@ const themes = [
   'violet-dark',
 ];
 
+export const revalidate = 0;
+
 export default async function RootLayout({
   children,
 }: {
@@ -58,6 +60,7 @@ export default async function RootLayout({
           themes={themes}
           attribute='class'
           defaultTheme={store.color}
+          enableSystem
         >
           <Navbar name={store.name} theme={store.color} />
           <ModalProvider />

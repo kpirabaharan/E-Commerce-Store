@@ -14,7 +14,7 @@ interface ThemeButtonProps {
 }
 
 const ThemeButton = ({ themeColor }: ThemeButtonProps) => {
-  const { theme, setTheme, systemTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { userTheme, toggleTheme } = useUserTheme();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -23,12 +23,7 @@ const ThemeButton = ({ themeColor }: ThemeButtonProps) => {
     userTheme === 'light'
       ? setTheme(themeColor)
       : setTheme(`${themeColor}-dark`);
-  }, [setTheme, themeColor, userTheme]);
-
-  // useEffect(() => {
-  //   console.log({ systemTheme });
-  //   console.log(theme);
-  // }, [theme, systemTheme]);
+  }, [setTheme, themeColor, userTheme, theme]);
 
   if (!isMounted) {
     return <Skeleton className='h-8 w-8 rounded-full' />;
