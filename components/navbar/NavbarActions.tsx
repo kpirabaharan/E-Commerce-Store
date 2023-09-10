@@ -10,7 +10,11 @@ import ThemeButton from '@/components/ThemeButton';
 
 import { Button } from '@/components/ui/button';
 
-const NavbarActions = () => {
+interface NavbarActionsProps {
+  theme: string;
+}
+
+const NavbarActions = ({ theme }: NavbarActionsProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const { items } = useCart();
@@ -27,7 +31,7 @@ const NavbarActions = () => {
 
   return (
     <div className='ml-auto flex items-center gap-x-4'>
-      <ThemeButton />
+      <ThemeButton themeColor={theme} />
       <Button
         size={'sm'}
         className='rounded-2xl'

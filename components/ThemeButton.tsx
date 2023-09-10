@@ -4,16 +4,31 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { SunIcon, MoonIcon } from 'lucide-react';
 
+import useUserTheme from '@/hooks/useUserTheme';
+
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 
-const ThemeButton = () => {
-  const { theme, setTheme } = useTheme();
+interface ThemeButtonProps {
+  themeColor: string;
+}
+
+const ThemeButton = ({ themeColor }: ThemeButtonProps) => {
+  const { theme, setTheme, systemTheme } = useTheme();
+  const { userTheme, toggleTheme } = useUserTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    userTheme === 'light'
+      ? setTheme(themeColor)
+      : setTheme(`${themeColor}-dark`);
+  }, [setTheme, themeColor, userTheme]);
+
+  // useEffect(() => {
+  //   console.log({ systemTheme });
+  //   console.log(theme);
+  // }, [theme, systemTheme]);
 
   if (!isMounted) {
     return <Skeleton className='h-8 w-8 rounded-full' />;
@@ -24,10 +39,18 @@ const ThemeButton = () => {
       variant={'outline'}
       size={'sm'}
       onClick={
-        theme === 'light' ? () => setTheme('dark') : () => setTheme('light')
+        theme === themeColor
+          ? () => {
+              setTheme(`${themeColor}-dark`);
+              toggleTheme();
+            }
+          : () => {
+              setTheme(themeColor);
+              toggleTheme();
+            }
       }
     >
-      {theme === 'light' ? <SunIcon size={16} /> : <MoonIcon size={16} />}
+      {theme === themeColor ? <SunIcon size={16} /> : <MoonIcon size={16} />}
     </Button>
   );
 };

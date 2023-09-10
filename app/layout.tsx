@@ -5,6 +5,7 @@ import { Urbanist } from 'next/font/google';
 import ModalProvider from '@/providers/ModalProvider';
 import ToastProvider from '@/providers/ToastProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
+import getStore from '@/actions/getStore';
 
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/Footer';
@@ -16,16 +17,49 @@ export const metadata: Metadata = {
   description: 'Store',
 };
 
-export default function RootLayout({
+const themes = [
+  'zinc',
+  'zinc-dark',
+  'slate',
+  'slate-dark',
+  'stone',
+  'stone-dark',
+  'gray',
+  'gray-dark',
+  'neutral',
+  'neutral-dark',
+  'red',
+  'red-dark',
+  'rose',
+  'rose-dark',
+  'orange',
+  'orange-dark',
+  'green',
+  'green-dark',
+  'blue',
+  'blue-dark',
+  'yellow',
+  'yellow-dark',
+  'violet',
+  'violet-dark',
+];
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const store = await getStore();
+
   return (
     <html lang='en'>
       <body className={font.className}>
-        <ThemeProvider attribute='class' defaultTheme='light' enableSystem>
-          <Navbar />
+        <ThemeProvider
+          themes={themes}
+          attribute='class'
+          defaultTheme={store.color}
+        >
+          <Navbar name={store.name} theme={store.color} />
           <ModalProvider />
           <ToastProvider />
           {children}

@@ -25,10 +25,8 @@ const NavRoutes = ({ data }: NavRoutesProps) => {
           key={route.href}
           href={route.href}
           className={cn(
-            'text-sm font-medium transition-colors hover:text-primary pt-[1px]',
-            route.active
-              ? 'text-black dark:text-white'
-              : 'text-muted-foreground',
+            'text-sm font-medium transition-colors hover:text-foreground pt-[1px]',
+            route.active ? 'text-foreground' : 'text-muted-foreground',
           )}
         >
           {route.label}

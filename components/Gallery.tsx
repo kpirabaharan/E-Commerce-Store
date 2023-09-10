@@ -23,7 +23,7 @@ const Gallery = ({ images }: GalleryProps) => {
         <TabsContent
           key={image.id}
           value={image.id}
-          className={`aspect-square max-h-[400px] relative rounded-md bg-muted dark:bg-muted`}
+          className='aspect-square max-h-[400px] relative rounded-md bg-muted'
         >
           <Image
             src={image.url}

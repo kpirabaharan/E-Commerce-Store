@@ -13,6 +13,9 @@ export interface Category {
 export interface Store {
   id: string;
   name: string;
+  limit: number;
+  icon: string;
+  color: string;
 }
 
 export interface Product {

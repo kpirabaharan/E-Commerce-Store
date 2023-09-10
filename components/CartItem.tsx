@@ -29,7 +29,7 @@ const CartItem = ({ data }: CartItemProps) => {
     <li className='flex flex-row gap-x-6'>
       <div
         className={`relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48 
-        bg-muted dark:bg-primary-foreground`}
+        bg-muted`}
       >
         <Image
           src={data.images[0].url}
@@ -56,14 +56,14 @@ const CartItem = ({ data }: CartItemProps) => {
       </div>
 
       <div className='flex flex-row h-full items-center gap-x-4'>
-        <div className='flex flex-row items-center gap-x-1 bg-white rounded-xl'>
+        <div className='flex flex-row items-center gap-x-1 bg-primary rounded-xl'>
           <Button
             size={isSmallScreens ? 'icon-sm' : 'icon'}
             onClick={() => removeItem(data.id)}
           >
             <MinusIcon size={20} />
           </Button>
-          <p className='flex justify-center text-secondary text-lg font-bold w-[25px]'>
+          <p className='flex justify-center text-primary-foreground text-lg font-bold w-[25px]'>
             {currentItem!.quantity}
           </p>
           <Button

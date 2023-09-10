@@ -44,12 +44,10 @@ const ProductCard = ({ data }: ProductCardProps) => {
   return (
     <div
       onClick={handleClick}
-      className='bg-white dark:bg-secondary group cursor-pointer rounded-xl border p-3 space-y-3'
+      className='bg-background group cursor-pointer rounded-xl border p-3 space-y-3'
     >
       {/* Images and Actions */}
-      <div
-        className={`aspect-square relative rounded-xl bg-secondary dark:bg-primary-foreground`}
-      >
+      <div className={`aspect-square relative rounded-xl bg-secondary`}>
         <Image
           className='rounded-xl'
           src={data.images[0].url}
@@ -61,15 +59,11 @@ const ProductCard = ({ data }: ProductCardProps) => {
           absolute bottom-2 w-full'
         >
           <div className='flex gap-x-2 justify-center'>
-            <Button
-              size={'rounded-icon'}
-              variant={'outline'}
-              onClick={onPreview}
-            >
+            <Button size={'rounded'} variant={'outline'} onClick={onPreview}>
               <ExpandIcon size={20} />
             </Button>
             <Button
-              size={'rounded-icon'}
+              size={'rounded'}
               variant={'outline'}
               onClick={onAddToCart}
               disabled={currentItem ? currentItem.quantity >= maxAmount : false}
