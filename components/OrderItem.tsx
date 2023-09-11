@@ -39,7 +39,7 @@ const OrderItem = ({ data, orderDate }: OrderItemProps) => {
     <div className='grid grid-cols-5 gap-x-8'>
       <div
         className='relative col-span-2 lg:col-span-2 bg-secondary rounded-lg
-        h-[150px] lg:h-[300px]'
+        h-[150px] md:h-[200px] lg:h-[300px]'
       >
         <Image
           src={data.product.images[0].url}

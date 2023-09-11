@@ -6,10 +6,10 @@ import getOrder from '@/actions/getOrder';
 
 import { Container } from '@/components/Container';
 import OrderCard from '@/components/OrderCard';
-import Currency from '@/components/Currency';
 import OrderList from '@/components/OrderList';
-import { Separator } from '@/components/ui/separator';
 import PaymentSummary from '@/components/PaymentSummary';
+
+import { Separator } from '@/components/ui/separator';
 
 interface OrderSuccessPageProps {
   params: { orderId: string };
@@ -110,7 +110,11 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
 
         {/* Payment Summary */}
         <div className='mt-4 lg:mt-8 grid grid-cols-3'>
-          <PaymentSummary order={order} address={address} subtotal={totalPrice} />
+          <PaymentSummary
+            order={order}
+            address={address}
+            subtotal={totalPrice}
+          />
         </div>
       </div>
     </Container>
