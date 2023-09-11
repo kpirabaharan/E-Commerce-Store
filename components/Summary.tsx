@@ -22,6 +22,12 @@ const Summary = () => {
   const origin = useOrigin();
 
   useEffect(() => {
+    if (searchParams.get('success')) {
+      toast.success('Payment Completed', { toastId: 'Payment Completed' });
+      removeAll();
+      router.push(`/order/success/${searchParams.get('success')}`);
+    }
+
     if (searchParams.get('canceled')) {
       toast('Payment Canceled');
       router.push('/cart');
