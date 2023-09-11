@@ -7,7 +7,9 @@ import getOrder from '@/actions/getOrder';
 import { Container } from '@/components/Container';
 import OrderCard from '@/components/OrderCard';
 import Currency from '@/components/Currency';
-// import OrderList from '@/components/OrderList';
+import OrderList from '@/components/OrderList';
+import { Separator } from '@/components/ui/separator';
+import PaymentSummary from '@/components/PaymentSummary';
 
 interface OrderSuccessPageProps {
   params: { orderId: string };
@@ -25,17 +27,8 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
     0,
   );
 
-  const totalItems = order.orderItems.reduce(
-    (total, item) => total + item.quantity,
-    0,
-  );
-
   const orderDate = new Date(order.createdAt);
   const orderDateString = format(orderDate, 'MMMM do, yyyy');
-  const estimatedDeliveryDateString = `${format(
-    orderDate.setDate(orderDate.getDate() + 4),
-    'MMM d',
-  )} - ${format(orderDate.setDate(orderDate.getDate() + 6), 'MMM d')}`;
 
   const address = order.address.split(', ');
 
@@ -59,17 +52,13 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
             <p className='font-semibold'>{order.id}</p>
           </div>
           <div className='flex flex-row gap-x-2'>
-            <p className='text-base'>Order Total:</p>
-            <Currency className='text-base' value={totalPrice} />
-          </div>
-          <div className='flex flex-row gap-x-2'>
             <p className='text-base'>Order Date:</p>
             <p className='font-semibold'>{orderDateString}</p>
           </div>
         </div>
 
         {/* OrderCards */}
-        <div className='grid grid-cols-3 gap-x-4'>
+        <div className='grid grid-cols-3 gap-x-4 mt-4'>
           <OrderCard>
             <div className='flex flex-row gap-x-2'>
               <CalendarDaysIcon />
@@ -112,10 +101,17 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
           </OrderCard>
         </div>
 
+        <Separator className='mt-4 lg:mt-8' />
+
         {/* Order List */}
-        {/* <div className='mt-4'>
-          <OrderList items={order.orderItems} />
-        </div> */}
+        <div className='mt-4 lg:mt-8'>
+          <OrderList items={order.orderItems} orderDate={orderDate} />
+        </div>
+
+        {/* Payment Summary */}
+        <div className='mt-4 lg:mt-8 grid grid-cols-3'>
+          <PaymentSummary order={order} address={address} subtotal={totalPrice} />
+        </div>
       </div>
     </Container>
   );

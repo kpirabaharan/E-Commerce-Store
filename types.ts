@@ -39,9 +39,9 @@ export interface Order {
   email: string;
   phone: string;
   address: string;
-  orderItems: OrderItems[];
+  orderItems: OrderItem[];
 }
-export interface OrderItems {
+export interface OrderItem {
   id: string;
   productId: string;
   quantity: number;
