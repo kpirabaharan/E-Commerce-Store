@@ -70,7 +70,7 @@ const Summary = () => {
       rounded-lg bg-secondary flex flex-col gap-y-4'
     >
       <h2 className='text-lg font-bold'>Order Summary</h2>
-      <Separator />
+      <Separator className='bg-secondary-foreground' />
       <div className='flex flex-row items-center justify-between'>
         <div className='flex flex-col'>
           <p className='text-base font-medium'>Order Total</p>

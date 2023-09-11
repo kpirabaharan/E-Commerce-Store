@@ -30,6 +30,24 @@ export interface Product {
   images: Image[];
 }
 
+export interface Order {
+  id: string;
+  createdAt: string;
+  store: Store;
+  isPaid: boolean;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  orderItems: OrderItems[];
+}
+export interface OrderItems {
+  id: string;
+  productId: string;
+  quantity: number;
+  product: Product;
+}
+
 export interface Size {
   id: string;
   name: string;
