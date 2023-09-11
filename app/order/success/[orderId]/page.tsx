@@ -57,7 +57,7 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
         </div>
 
         {/* OrderCards */}
-        <div className='grid grid-cols-3 gap-x-4 mt-4'>
+        <div className='grid grid-cols-3 gap-x-4 lg:mt-4'>
           <OrderCard>
             <div className='flex flex-row gap-x-2'>
               <CalendarDaysIcon />
@@ -102,15 +102,15 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
           </OrderCard>
         </div>
 
-        <Separator className='mt-4 lg:mt-8' />
+        <Separator className='mt-6 lg:mt-8' />
 
         {/* Order List */}
-        <div className='mt-4 lg:mt-8'>
+        <div className='mt-6 lg:mt-8'>
           <OrderList items={order.orderItems} />
         </div>
 
         {/* Payment Summary */}
-        <div className='mt-4 lg:mt-8 grid grid-cols-3'>
+        <div className='mt-8 grid grid-cols-3'>
           <PaymentSummary
             order={order}
             address={address}

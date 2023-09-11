@@ -15,7 +15,7 @@ interface PaymentSummaryProps {
 const PaymentSummary = ({ order, address, subtotal }: PaymentSummaryProps) => {
   return (
     <div
-      className='flex flex-col gap-y-4 p-4 sm:p-6 mt-4 rounded-lg bg-secondary
+      className='flex flex-col gap-y-4 p-4 sm:p-6 rounded-lg bg-secondary
       col-span-3 lg:col-span-2'
     >
       <h1 className='text-2xl font-bold'>Payment Summary</h1>
