@@ -1,12 +1,13 @@
 import { redirect } from 'next/navigation';
 import { format } from 'date-fns';
 import { CalendarDaysIcon, MailIcon, PhoneIcon } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 import getOrder from '@/actions/getOrder';
+import useCart from '@/hooks/useCart';
 
 import { Container } from '@/components/Container';
 import OrderCard from '@/components/OrderCard';
-import Currency from '@/components/Currency';
 import OrderList from '@/components/OrderList';
 import { Separator } from '@/components/ui/separator';
 import PaymentSummary from '@/components/PaymentSummary';
@@ -17,9 +18,16 @@ interface OrderSuccessPageProps {
 
 const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
   const order = await getOrder(params.orderId);
+  const { removeAll } = useCart();
 
   if (!order) {
     redirect('/');
+  }
+
+  if (order) {
+    ('use client');
+    toast.success('Payment Completed');
+    removeAll();
   }
 
   const totalPrice = order.orderItems.reduce(
@@ -110,7 +118,11 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
 
         {/* Payment Summary */}
         <div className='mt-4 lg:mt-8 grid grid-cols-3'>
-          <PaymentSummary order={order} address={address} subtotal={totalPrice} />
+          <PaymentSummary
+            order={order}
+            address={address}
+            subtotal={totalPrice}
+          />
         </div>
       </div>
     </Container>
