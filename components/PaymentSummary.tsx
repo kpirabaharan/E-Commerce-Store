@@ -27,15 +27,15 @@ const PaymentSummary = ({ order, address, subtotal }: PaymentSummaryProps) => {
           <p className='font-semibold'>Pay in full with:</p>
           <div className='flex flex-row gap-x-2'>
             <CreditCardIcon />
-            <p className='font-extralight'>********42</p>
+            <p className='font-light'>********42</p>
           </div>
         </div>
 
         <div className='flex flex-col gap-y-1'>
           <p className='font-semibold'>Bills to:</p>
-          <p className='font-extralight'>{order.name}</p>
-          <p className='font-extralight'>{address[0]}</p>
-          <p className='font-extralight'>
+          <p className='font-light'>{order.name}</p>
+          <p className='font-light'>{address[0]}</p>
+          <p className='font-light'>
             {address[1]}, {address[2]}, {address[3]}
           </p>
         </div>
@@ -43,10 +43,10 @@ const PaymentSummary = ({ order, address, subtotal }: PaymentSummaryProps) => {
 
       <Separator className='bg-gray-300' />
 
-      <div className='flex flex-col gap-y-1 font-extralight'>
+      <div className='flex flex-col gap-y-1 font-light'>
         <div className='flex flex-row justify-between'>
           <p className='text-lg'>Subtotal</p>
-          <Currency className='font-extralight' value={subtotal} />
+          <Currency className='font-light' value={subtotal} />
         </div>
         <div className='flex flex-row justify-between'>
           <p className='text-lg'>Shipping</p>
@@ -54,7 +54,7 @@ const PaymentSummary = ({ order, address, subtotal }: PaymentSummaryProps) => {
         </div>
         <div className='flex flex-row justify-between'>
           <p className='text-lg'>Estimated Tax</p>
-          <Currency className='font-extralight' value={0} />
+          <Currency className='font-light' value={0} />
         </div>
       </div>
 

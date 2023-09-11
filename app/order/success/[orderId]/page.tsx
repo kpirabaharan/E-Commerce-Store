@@ -27,8 +27,7 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
     0,
   );
 
-  const orderDate = new Date(order.createdAt);
-  const orderDateString = format(orderDate, 'MMMM do, yyyy');
+  const orderDateString = format(new Date(order.createdAt), 'MMMM do, yyyy');
 
   const address = order.address.split(', ');
 
@@ -64,7 +63,7 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
               <CalendarDaysIcon />
               <div className='flex flex-col gap-y-4'>
                 <p className='font-bold text-base'>Shipping Address:</p>
-                <div className='flex flex-col gap-y-2'>
+                <div className='flex flex-col gap-y-2 font-light'>
                   <p>Standard Shipping</p>
                   <p>{order.name}</p>
                   <div className='flex flex-col'>
@@ -85,7 +84,7 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
                 <MailIcon />
                 <div className='flex flex-col gap-y-2'>
                   <p className='font-bold text-base'>Shared Email Address:</p>
-                  <p>{order.email}</p>
+                  <p className='font-light'>{order.email}</p>
                 </div>
               </div>
               <div className='flex flex-row gap-x-2'>
@@ -93,7 +92,9 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
                 <div className='flex flex-col gap-y-2'>
                   <p className='font-bold text-base'>Shared Phone Number:</p>
                   <div className='flex flex-col gap-y-2'>
-                    <p>{formatPhoneNumber(order.phone)}</p>
+                    <p className='font-light'>
+                      {formatPhoneNumber(order.phone)}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -105,7 +106,7 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
 
         {/* Order List */}
         <div className='mt-4 lg:mt-8'>
-          <OrderList items={order.orderItems} orderDate={orderDate} />
+          <OrderList items={order.orderItems} />
         </div>
 
         {/* Payment Summary */}

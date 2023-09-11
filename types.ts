@@ -45,6 +45,7 @@ export interface OrderItem {
   id: string;
   productId: string;
   quantity: number;
+  deliveryDate: string;
   product: Product;
 }
 

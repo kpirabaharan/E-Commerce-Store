@@ -7,7 +7,6 @@ import { Progress } from '@/components/ui/progress';
 
 interface OrderItemProps {
   data: OrderItem;
-  orderDate: Date;
 }
 
 // const deliveryProgress = [
@@ -29,12 +28,7 @@ interface OrderItemProps {
 //   },
 // ];
 
-const OrderItem = ({ data, orderDate }: OrderItemProps) => {
-  const estimatedDeliveryDate = format(
-    new Date(orderDate.setDate(orderDate.getDate() + 3 + Math.random() * 3)),
-    'MMM do, yyyy',
-  );
-
+const OrderItem = ({ data }: OrderItemProps) => {
   return (
     <div className='grid grid-cols-5 gap-x-8'>
       <div
@@ -55,7 +49,7 @@ const OrderItem = ({ data, orderDate }: OrderItemProps) => {
           Estimated Delivery Date:
           <span className='font-semibold text-secondary-foreground'>
             {' '}
-            {estimatedDeliveryDate}
+            {format(new Date(data.deliveryDate), 'MMMM do, yyyy')}
           </span>
         </p>
 
