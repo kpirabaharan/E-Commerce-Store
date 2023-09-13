@@ -25,7 +25,7 @@ const Summary = () => {
     if (searchParams.get('success')) {
       toast.success('Payment Completed', { toastId: 'Payment Completed' });
       removeAll();
-      router.push(`/order/success/${searchParams.get('success')}`);
+      router.push(`/order/${searchParams.get('success')}`);
     }
 
     if (searchParams.get('canceled')) {
