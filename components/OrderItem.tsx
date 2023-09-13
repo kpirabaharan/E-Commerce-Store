@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { OrderItem } from '@/types';
 
 import { Progress } from '@/components/ui/progress';
+import Currency from './Currency';
 
 interface OrderItemProps {
   data: OrderItem;
@@ -29,8 +30,10 @@ interface OrderItemProps {
 // ];
 
 const OrderItem = ({ data }: OrderItemProps) => {
+  const itemTotal = data.quantity * Number(data.product.price);
+
   return (
-    <div className='grid grid-cols-5 gap-x-8'>
+    <div className='grid grid-cols-5 gap-x-2 lg:gap-x-8'>
       <div
         className='relative col-span-2 lg:col-span-2 bg-secondary rounded-lg
         h-[150px] md:h-[200px] lg:h-[300px]'
@@ -43,8 +46,29 @@ const OrderItem = ({ data }: OrderItemProps) => {
         />
       </div>
 
-      <div className='col-span-3 lg:col-span-3 flex flex-col gap-y-3 justify-center'>
-        <p className='text-muted-foreground leading-3'>{data.product.name}</p>
+      <div className='col-span-3 lg:col-span-3 flex flex-col gap-y-1 lg:gap-y-2 justify-center'>
+        <div className='flex flex-col'>
+          <div className='flex flex-row justify-between'>
+            <p className='text-base lg:text-lg'>{data.product.name}</p>
+            <Currency
+              className='font-normal text-base lg:text-lg'
+              value={itemTotal}
+            />
+          </div>
+          {data.quantity > 1 && (
+            <div className='flex flex-row justify-between'>
+              <p className='text-muted-foreground text-xs lg:text-sm'>
+                Quantity {data.quantity}
+              </p>
+              <Currency
+                className='text-muted-foreground font-normal text-xs lg:text-sm'
+                value={data.product.price}
+              >
+                each
+              </Currency>
+            </div>
+          )}
+        </div>
         <p className='text-xl lg:text-3xl font-semibold text-primary'>
           Estimated Delivery Date:
           <span className='font-semibold text-secondary-foreground'>

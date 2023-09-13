@@ -48,7 +48,7 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
         <div className='flex flex-col mt-4 col-span-3 lg:col-span-1'>
           <div className='flex flex-row gap-x-2'>
             <p className='text-base'>Order Number:</p>
-            <p className='font-semibold'>{order.id}</p>
+            <p className='font-semibold'>#{order.id}</p>
           </div>
           <div className='flex flex-row gap-x-2'>
             <p className='text-base'>Order Date:</p>
