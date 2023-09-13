@@ -6,7 +6,7 @@ const Footer = async () => {
   return (
     <footer className='border-t'>
       <div className='mx-auto py-10'>
-        <p className='text-center text-xs'>
+        <p className='text-center text-primary text-xs'>
           &copy; 2023 {store.name}, Inc. All Rights Reserved
         </p>
       </div>
