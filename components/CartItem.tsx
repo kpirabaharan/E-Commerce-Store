@@ -57,7 +57,7 @@ const CartItem = ({ data }: CartItemProps) => {
         </div>
         <Currency
           className='text-base sm:text-lg'
-          value={parseFloat(data.price) * currentItem!.quantity}
+          value={Number(data.price) * currentItem!.quantity}
         />
       </div>
 

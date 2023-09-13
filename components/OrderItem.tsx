@@ -4,32 +4,52 @@ import { format } from 'date-fns';
 import { OrderItem } from '@/types';
 
 import { Progress } from '@/components/ui/progress';
-import Currency from './Currency';
+import Currency from '@/components/Currency';
 
 interface OrderItemProps {
   data: OrderItem;
+  orderDate: Date;
 }
 
-// const deliveryProgress = [
-//   {
-//     status: 'Order Placed',
-//     value: 5,
-//   },
-//   {
-//     status: 'Preparing to Ship',
-//     value: 38,
-//   },
-//   {
-//     status: 'Shipped',
-//     value: 69,
-//   },
-//   {
-//     status: 'Delivered',
-//     value: 100,
-//   },
-// ];
+const deliveryProgress = [
+  {
+    text: 'Estimated Delivery Date:',
+    value: 0,
+    progress: 5,
+  },
+  {
+    text: 'Estimated Delivery Date:',
+    value: 0.1,
+    progress: 38,
+  },
+  {
+    text: 'Estimated Delivery Date:',
+    value: 0.4,
+    progress: 69,
+  },
+  {
+    text: 'Delivered:',
+    value: 1,
+    progress: 100,
+  },
+];
 
-const OrderItem = ({ data }: OrderItemProps) => {
+const OrderItem = ({ data, orderDate }: OrderItemProps) => {
+  const deliveryDate = new Date(data.deliveryDate);
+  const deliveryToOrder = deliveryDate.getTime() - orderDate.getTime();
+  const nowToOrder = new Date().getTime() - orderDate.getTime();
+  const timePercentage = nowToOrder / deliveryToOrder;
+
+  var deliveryStatus = deliveryProgress[0];
+
+  if (timePercentage >= deliveryProgress[3].value) {
+    deliveryStatus = deliveryProgress[3];
+  } else if (timePercentage >= deliveryProgress[2].value) {
+    deliveryStatus = deliveryProgress[2];
+  } else if (timePercentage >= deliveryProgress[1].value) {
+    deliveryStatus = deliveryProgress[1];
+  }
+
   const itemTotal = data.quantity * Number(data.product.price);
 
   return (
@@ -70,15 +90,15 @@ const OrderItem = ({ data }: OrderItemProps) => {
           )}
         </div>
         <p className='text-xl lg:text-3xl font-semibold text-primary'>
-          Estimated Delivery Date:
+          {deliveryStatus.text}
           <span className='font-semibold text-secondary-foreground'>
             {' '}
-            {format(new Date(data.deliveryDate), 'MMMM do, yyyy')}
+            {format(deliveryDate, 'MMMM do, yyyy')}
           </span>
         </p>
 
         <div className='hidden lg:flex flex-col gap-y-2 col-span-5'>
-          <Progress className='h-2' value={5} />
+          <Progress className='h-2' value={deliveryStatus.progress} />
           <div className='w-full flex justify-between text-xs lg:text-sm text-muted-foreground'>
             <p>Order Placed</p>
             <p>Preparing to Ship</p>
@@ -88,7 +108,7 @@ const OrderItem = ({ data }: OrderItemProps) => {
         </div>
       </div>
       <div className='flex lg:hidden mt-8 flex-col gap-y-2 col-span-5'>
-        <Progress className='h-2' value={5} />
+        <Progress className='h-2' value={deliveryStatus.progress} />
         <div className='w-full flex justify-between text-sm text-muted-foreground'>
           <p>Order Placed</p>
           <p>Preparing to Ship</p>

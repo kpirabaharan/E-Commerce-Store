@@ -106,7 +106,7 @@ const OrderSuccessPage = async ({ params }: OrderSuccessPageProps) => {
 
         {/* Order List */}
         <div className='mt-6 lg:mt-8'>
-          <OrderList items={order.orderItems} />
+          <OrderList createdAt={order.createdAt} items={order.orderItems} />
         </div>
 
         {/* Payment Summary */}
