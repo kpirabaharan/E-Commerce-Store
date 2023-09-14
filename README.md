@@ -4,18 +4,31 @@ Welcome to the E-commerce Store Website, the online shopping destination that pa
 
 ## Key Features
 
-- **Product Selection:**
+### Product Selection
 
-  - Browse and explore a diverse catalog of products across various categories.
-  - Discover trending items and new arrivals with ease.
+- Browse and explore a diverse catalog of products across various categories.
+- Discover trending items and new arrivals with ease.
 
-- **Effortless Shopping:**
+### Effortless Shopping
 
-  - Add products to your cart and proceed to a hassle-free checkout process.
-  - Conveniently manage your orders and track their status.
+- Add products to your cart and proceed to a hassle-free checkout process.
+- Conveniently manage your orders and track their status.
 
-- **Secure Transactions:**
-  - Rest assured that your payments are processed securely with our integrated payment system.
+### Secure Transactions
+
+- Rest assured that your payments are processed securely with our integrated payment system.
+
+### Theme Customization
+
+- Personalize your shopping experience by choosing from 12 different store themes, including an eye-friendly dark mode option.
+
+### Order Confirmation
+
+- Receive instant order confirmation emails, providing you with all the details of your purchase for your records.
+
+### Order Tracking
+
+- Easily monitor the status and location of your orders directly on the website, so you always know where your items are.
 
 ## Demo
 
@@ -57,7 +70,7 @@ Explore the live admin dasboard website: [E-commerce Admin Dashboard Website](ht
 
 ### Home Page
 
-![Home Page Light](./screenshots/HomePage.png)
+![Home Page](./screenshots/HomePage.png)
 
 ### Category Page
 
@@ -70,6 +83,14 @@ Explore the live admin dasboard website: [E-commerce Admin Dashboard Website](ht
 ### Stripe Payment Page
 
 ![Stripe Payment Page](./screenshots/StripePayment.png)
+
+### Order Email
+
+![Email](./screenshots/Email.png)
+
+### Order Page
+
+![Order Page](./screenshots/OrderPage.png)
 
 ## License
 
