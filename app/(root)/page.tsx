@@ -1,3 +1,4 @@
+import getStore from '@/actions/getStore';
 import getBillboard from '@/actions/getBillboard';
 import getProducts from '@/actions/getProducts';
 
@@ -9,9 +10,9 @@ import { Container } from '@/components/Container';
 export const revalidate = 0;
 
 const HomePage = async () => {
-  const billboard = await getBillboard(
-    process.env.NEXT_PUBLIC_HOME_BILLBOARD ?? '',
-  );
+  const store = await getStore();
+  const billboard = await getBillboard(store.homeBillboardId ?? '');
+
   const products = await getProducts({ isFeatured: true });
 
   return (

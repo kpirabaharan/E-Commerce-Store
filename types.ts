@@ -16,6 +16,7 @@ export interface Store {
   limit: number;
   icon: string;
   color: string;
+  homeBillboardId: string;
 }
 
 export interface Product {
