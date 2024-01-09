@@ -1,7 +1,7 @@
 import { Store } from '@/types';
 
 const getStore = async (): Promise<Store> => {
-  const res = await fetch(process.env.NEXT_PUBLIC_STORE_API_URL ?? '');
+  const res = await fetch(process.env.NEXT_STORE_API_URL ?? '');
 
   return res.json();
 };
