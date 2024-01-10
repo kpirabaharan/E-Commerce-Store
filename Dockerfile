@@ -6,9 +6,7 @@ WORKDIR /usr/src/app
 COPY ./package.json .
 RUN npm i
 
-COPY . .
-
-RUN chown -R node:node /usr/src/app
+COPY  . .
 
 EXPOSE 3000
 CMD npm run dev
