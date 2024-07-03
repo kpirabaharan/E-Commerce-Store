@@ -36,8 +36,8 @@ To showcase the multi-store feature, two stores have been established within the
 
 **Click the links to explore the live websites:**
 
-- [E-commerce Clothing Store Website](https://e-commerce-store-clothes-kpirabaharan.vercel.app/)
-- [E-commerce Shoe Store Website](https://e-commerce-store-shoes-kpirabaharan.vercel.app/)
+- [E-commerce Clothing Store Website](https://e-commerce-store-clothes-keeshigan.vercel.app/)
+- [E-commerce Shoe Store Website](https://e-commerce-store-shoes-keeshigan.vercel.app/)
 
 ## Accompanied Admin Dashboard Website
 
@@ -47,7 +47,7 @@ To showcase the multi-store feature, two stores have been established within the
 
 ### Website
 
-Explore the live admin dasboard website: [E-commerce Admin Dashboard Website](https://e-commerce-admin-dashboard-kpirabaharan.vercel.app/)
+Explore the live admin dasboard website: [E-commerce Admin Dashboard Website](https://e-commerce-admin-dashboard-keeshigan.vercel.app/)
 
 ## How to Shop
 
